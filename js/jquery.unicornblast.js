@@ -4,7 +4,7 @@
 		//defaults in da house
 		var settings = {
 			start : 'click',
-			numberOfFlyBys : 6,
+			numberOfFlyBys : 15,
 			delayTime: 5000
 		}
 		
@@ -14,20 +14,22 @@
 		return this.each(function() {
 			var animationRunning = false;
 			var audioSupported = false;
-			var content = '<img id="bigRainbow" style="display: none" src="img/rainbow.gif" />';
-			content += '<img id="flyingUnicorn0" class="flyingUnicorn" style="display: none" src="img/flyingUnicorn0.gif" />';
-			content += '<img id="flyingUnicorn1" class="flyingUnicorn" style="display: none" src="img/flyingUnicorn1.gif" />';
-			content += '<img id="flyingUnicorn2" class="flyingUnicorn" style="display: none" src="img/flyingUnicorn2.gif" />';
-			content += '<img id="flyingUnicorn3" class="flyingUnicorn" style="display: none" src="img/flyingUnicorn3.gif" />';
+			var content = '<img id="bigRainbow" style="display: none" src="images/rainbow.gif" />';
+			content += '<img id="flyingUnicorn0" class="flyingUnicorn" style="display: none" src="images/flyingUnicorn0.gif" />';
+			content += '<img id="flyingUnicorn1" class="flyingUnicorn" style="display: none" src="images/flyingUnicorn1.gif" />';
+			content += '<img id="flyingUnicorn2" class="flyingUnicorn" style="display: none" src="images/flyingUnicorn2.gif" />';
+			content += '<img id="flyingUnicorn3" class="flyingUnicorn" style="display: none" src="images/flyingUnicorn3.gif" />';
+			content += '<img id="flyingUnicorn4" class="flyingUnicorn" style="display: none" src="images/flyingUnicorn4.gif" />';
+			content += '<img id="flyingUnicorn5" class="flyingUnicorn" style="display: none" src="images/flyingUnicorn5.gif" />';
 			
+
 			//Check for audio support and add elements if supported
-			if ($.browser.mozilla && $.browser.version.substr(0, 5) >= "1.9.2" || $.browser.webkit) { 
 				audioSupported = true;
-				content+= '<audio id="chimeSound0" preload="auto"><source src="sound/chime1.mp3"/><source src="sound/chime1.ogg" /></audio>';
-				content+= '<audio id="chimeSound1" preload="auto"><source src="sound/chime2.mp3"/><source src="sound/chime2.ogg" /></audio>';
-				content+= '<audio id="chimeSound2" preload="auto"><source src="sound/chime3.mp3"/><source src="sound/chime3.ogg" /></audio>';
-				content+= '<audio id="contraSound" preload="auto" loop><source src="sound/contra.mp3"/><source src="sound/contra.ogg" /></audio>';
-			}
+				content+= '<audio id="chimeSound0" preload="auto"><source src="music/chime1.mp3"/><source src="music/chime1.ogg" /></audio>';
+				content+= '<audio id="chimeSound1" preload="auto"><source src="music/chime2.mp3"/><source src="music/chime2.ogg" /></audio>';
+				content+= '<audio id="chimeSound2" preload="auto"><source src="music/chime3.mp3"/><source src="music/chime3.ogg" /></audio>';
+				content+= '<audio id="contraSound" preload="auto" loop><source src="music/contra.mp3"/><source src="music/contra.ogg" /></audio>';
+			
 			
 			//Add rainbow, unicorns, and sounds to page only if they do not already exist
 			if($('#bigRainbow').size() == 0){
@@ -116,7 +118,7 @@
 			function flyUnicorn(){
 				var entryPoint;
 				var exitPoint;
-				var unicornId = 'flyingUnicorn' + Math.floor(Math.random() * 4); 
+				var unicornId = 'flyingUnicorn' + Math.floor(Math.random() * 6); 
 				var unicornImg = $("#"+unicornId);
 				
 				if(entrySide[entrySideCount] == 'left' || entrySide[entrySideCount] == 'right'){

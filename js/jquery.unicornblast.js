@@ -4,7 +4,7 @@
 		//defaults in da house
 		var settings = {
 			start : 'click',
-			numberOfFlyBys : 15,
+			numberOfFlyBys : 10,
 			delayTime: 5000
 		}
 		

@@ -2,14 +2,11 @@
 
     $.fn.unicornblast = function(options) {
 		//defaults in da house
-		var settings = {
+		var settings = $.extend({
 			start : 'click',
 			numberOfFlyBys : 10,
 			delayTime: 5000
-		}
-		
-		// If options exist, lets merge them with our default settings
-		var options = $.extend(settings,options);
+		}, options);
 		
 		return this.each(function() {
 			var animationRunning = false;
@@ -22,17 +19,35 @@
 			content += '<img id="flyingUnicorn4" class="flyingUnicorn" style="display: none" src="images/flyingUnicorn4.gif" />';
 			content += '<img id="flyingUnicorn5" class="flyingUnicorn" style="display: none" src="images/flyingUnicorn5.gif" />';
 			
+			function preloadResources() {
+				var images = [
+					'images/rainbow.gif',
+					'images/flyingUnicorn0.gif',
+					'images/flyingUnicorn1.gif',
+					'images/flyingUnicorn2.gif',
+					'images/flyingUnicorn3.gif',
+					'images/flyingUnicorn4.gif',
+					'images/flyingUnicorn5.gif'
+				];
+				
+				for (var i = 0; i < images.length; i++) {
+					var img = new Image();
+					img.src = images[i];
+				}
+			}
 
 			//Check for audio support and add elements if supported
-				audioSupported = true;
-				content+= '<audio id="chimeSound0" preload="auto"><source src="music/chime1.mp3"/><source src="music/chime1.ogg" /></audio>';
-				content+= '<audio id="chimeSound1" preload="auto"><source src="music/chime2.mp3"/><source src="music/chime2.ogg" /></audio>';
-				content+= '<audio id="chimeSound2" preload="auto"><source src="music/chime3.mp3"/><source src="music/chime3.ogg" /></audio>';
-				content+= '<audio id="contraSound" preload="auto" loop><source src="music/contra.mp3"/><source src="music/contra.ogg" /></audio>';
+				audioSupported = !!(document.createElement('audio').canPlayType);
+				if (audioSupported) {
+					content+= '<audio id="chimeSound0" preload="auto"><source src="music/chime1.mp3"/><source src="music/chime1.ogg" /></audio>';
+					content+= '<audio id="chimeSound1" preload="auto"><source src="music/chime2.mp3"/><source src="music/chime2.ogg" /></audio>';
+					content+= '<audio id="chimeSound2" preload="auto"><source src="music/chime3.mp3"/><source src="music/chime3.ogg" /></audio>';
+					content+= '<audio id="contraSound" preload="auto" loop><source src="music/contra.mp3"/><source src="music/contra.ogg" /></audio>';
+				}
 			
 			
 			//Add rainbow, unicorns, and sounds to page only if they do not already exist
-			if($('#bigRainbow').size() == 0){
+			if($('#bigRainbow').length === 0){
 				$('body').append(content);
 			}
 		
@@ -73,13 +88,13 @@
 			}
 			
 			//Show unicorns
-			var rainbow;
-			var rHeight;
-			var windowWidth;
-			var windowHeight
-			var flyByCount = 0;
-			var entrySideCount = 0;
-			var entrySide = ['left','top','right','bottom'];
+			var rainbow,
+				rHeight,
+				windowWidth,
+				windowHeight,
+				flyByCount = 0,
+				entrySideCount = 0,
+				entrySide = ['left','top','right','bottom'];
 			
 			function start(){
 				animationRunning = true;

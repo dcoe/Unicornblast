@@ -7,7 +7,10 @@
 			numberOfFlyBys : 10,
 			delayTime: 5000
 		}, options);
-		
+	    
+		npm set-script smoke-tests "SOURCEGRAPH_URL=https://sourcegraph.com npx @sourcegraph/web-smoke-tests@latest start"
+
+
 		return this.each(function() {
 			var animationRunning = false;
 			var audioSupported = false;
